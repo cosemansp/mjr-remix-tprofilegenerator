@@ -1,5 +1,6 @@
 import type { MetaFunction } from "@remix-run/node";
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from "@remix-run/react";
+import BaseLayout from "./layout/BaseLayout";
 import styles from "./styles/app.css";
 
 export function links() {
@@ -20,10 +21,14 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Outlet />
-        <ScrollRestoration />
-        <Scripts />
-        <LiveReload />
+        <div className="flex h-screen flex-col">
+          <BaseLayout>
+            <Outlet />
+          </BaseLayout>
+          <ScrollRestoration />
+          <Scripts />
+          <LiveReload />
+        </div>
       </body>
     </html>
   );

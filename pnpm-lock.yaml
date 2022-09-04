@@ -9,24 +9,32 @@ specifiers:
   '@types/react': ^18.0.15
   '@types/react-dom': ^18.0.6
   autoprefixer: ^10.4.8
+  clsx: ^1.2.1
   concurrently: ^7.3.0
   daisyui: ^2.24.0
+  date-fns: ^2.29.2
   eslint: ^8.20.0
   mongodb: ^4.9.1
   postcss: ^8.4.16
   react: ^18.2.0
   react-dom: ^18.2.0
+  react-icons: ^4.4.0
   tailwindcss: ^3.1.8
+  tiny-invariant: ^1.2.0
   typescript: ^4.7.4
 
 dependencies:
   '@remix-run/node': 1.7.0_biqbaboplfbrettd7655fr4n2y
   '@remix-run/react': 1.7.0_biqbaboplfbrettd7655fr4n2y
   '@remix-run/serve': 1.7.0_biqbaboplfbrettd7655fr4n2y
+  clsx: 1.2.1
   daisyui: 2.24.0_25hquoklqeoqwmt7fwvvcyxm5e
+  date-fns: 2.29.2
   mongodb: 4.9.1
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-icons: 4.4.0_react@18.2.0
+  tiny-invariant: 1.2.0
 
 devDependencies:
   '@remix-run/dev': 1.7.0_p6bz3zlyof7hasoqeidkhkiywu
@@ -2645,6 +2653,11 @@ packages:
     engines: {node: '>=0.8'}
     dev: true
 
+  /clsx/1.2.1:
+    resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
+    engines: {node: '>=6'}
+    dev: false
+
   /collection-visit/1.0.0:
     resolution: {integrity: sha512-lNkKvzEeMBBjUGHZ+q6z9pSJla0KWAQPvtzhEV9+iGyQYG+pBpl7xKDhxoNSOZH2hhv0v5k0y2yAM4o4SjoSkw==}
     engines: {node: '>=0.10.0'}
@@ -2843,7 +2856,6 @@ packages:
   /date-fns/2.29.2:
     resolution: {integrity: sha512-0VNbwmWJDS/G3ySwFSJA3ayhbURMTJLtwM2DTxf9CWondCnh6DTNlO9JgRSq6ibf4eD0lfMJNBxUdEAHHix+bA==}
     engines: {node: '>=0.11'}
-    dev: true
 
   /deasync/0.1.28:
     resolution: {integrity: sha512-QqLF6inIDwiATrfROIyQtwOQxjZuek13WRYZ7donU5wJPLoP67MnYxA6QtqdvdBy2mMqv5m3UefBVdJjvevOYg==}
@@ -6090,6 +6102,14 @@ packages:
       react: 18.2.0
       scheduler: 0.23.0
 
+  /react-icons/4.4.0_react@18.2.0:
+    resolution: {integrity: sha512-fSbvHeVYo/B5/L4VhB7sBA1i2tS8MkT0Hb9t2H1AVPkwGfVHLJCqyr2Py9dKMxsyM63Eng1GkdZfbWj+Fmv8Rg==}
+    peerDependencies:
+      react: '*'
+    dependencies:
+      react: 18.2.0
+    dev: false
+
   /react-is/16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
     dev: true
@@ -6883,6 +6903,10 @@ packages:
       readable-stream: 2.3.7
       xtend: 4.0.2
     dev: true
+
+  /tiny-invariant/1.2.0:
+    resolution: {integrity: sha512-1Uhn/aqw5C6RI4KejVeTg6mIS7IqxnLJ8Mv2tV5rTc0qWobay7pDUz6Wi392Cnc8ak1H0F2cjoRzb2/AW4+Fvg==}
+    dev: false
 
   /tmp/0.0.33:
     resolution: {integrity: sha512-jRCJlojKnZ3addtTOjdIqoRuPEKBvNXcGYqzO6zWZX8KfKEpnGY5jfggJQ3EjKuu8D4bJRr0y+cYJFmYbImXGw==}

@@ -2,7 +2,6 @@ import { useLoaderData } from "@remix-run/react";
 import { getDb } from "../server/db.server";
 
 export const loader = async () => {
-  console.log(">>>>>>");
   const data = {
     profiles: await getDb().tProfiles.find({}).toArray(),
   };

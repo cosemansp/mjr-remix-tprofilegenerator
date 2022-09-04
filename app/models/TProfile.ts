@@ -1,13 +1,13 @@
-import type { ObjectId } from "mongodb";
+import type { ObjectId } from 'mongodb';
 
-export interface TProfile {
+export interface TProfileDb {
   _id: ObjectId;
   owner: {
     id: string;
     name: string;
   };
   date: Date;
-  kind: "toBe" | "asIs";
+  kind: 'toBe' | 'asIs';
   generalisms: {
     id: number;
     title: string;
@@ -20,4 +20,11 @@ export interface TProfile {
   }[];
   createdAt: Date;
   modifiedAt: Date;
+}
+
+export interface TProfile extends Omit<TProfileDb, '_id' | 'date' | 'createdAt' | 'modifiedAt'> {
+  id: string;
+  date: string;
+  createdAt: string;
+  modifiedAt: string;
 }
