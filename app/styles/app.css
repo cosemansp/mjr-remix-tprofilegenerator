@@ -1787,6 +1787,10 @@ body[dir="rtl"] .checkbox:checked,
   display: table;
 }
 
+.hidden {
+  display: none;
+}
+
 .h-screen {
   height: 100vh;
 }

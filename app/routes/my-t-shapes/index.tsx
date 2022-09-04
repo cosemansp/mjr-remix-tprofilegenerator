@@ -1,4 +1,4 @@
-import { useLoaderData, useSubmit } from '@remix-run/react';
+import { Form, useLoaderData, useSubmit } from '@remix-run/react';
 import type { ActionFunction } from '@remix-run/node';
 import { redirect } from '@remix-run/node';
 import ContentLayout from '~/layout/ContentLayout';
@@ -15,28 +15,28 @@ export const loader = async () => {
 
 export const action: ActionFunction = async ({ request }) => {
   const formData = await request.formData();
+  const formDataObj = Object.fromEntries(formData);
   const id = formData.get('id') as string;
   const intent = formData.get('intent') as string;
+  console.log('intent', { formDataObj, intent });
   switch (intent) {
     case 'delete':
       await deleteProfile(id);
-      return redirect('/my-t-shapes');
+      break;
     case 'copy':
       await copyProfile(id);
-      return redirect('/my-t-shapes');
+      break;
+    case 'edit':
+      return redirect(`/my-t-shapes/${id}`);
+    case 'new':
+      return redirect('/my-t-shapes/new');
   }
+  return redirect('/my-t-shapes');
 };
 
 export default function Index() {
   const { tProfiles } = useLoaderData<typeof loader>();
   const submit = useSubmit();
-
-  const handleCopy = (tProfile: TProfile) => {
-    const data = new URLSearchParams(`intent=copy&id=${tProfile.id}`);
-    submit(data, {
-      method: 'post',
-    });
-  };
 
   const handleDelete = (tProfile: TProfile) => {
     const data = new URLSearchParams(`intent=delete&id=${tProfile.id}`);
@@ -45,23 +45,16 @@ export default function Index() {
     });
   };
 
-  const handleEdit = (tProfile: TProfile) => {
-    submit(null, {
-      method: 'get',
-      action: `/my-t-shapes/${tProfile.id}`,
-    });
-  };
-
   return (
     <ContentLayout title="My T-Shapes">
-      <form method="get" action="/my-t-shapes/new">
+      <Form method="post">
         <div className="flex flex-col">
-          <button type="submit" className="btn btn-primary mb-2 self-start">
+          <button type="submit" className="btn btn-primary mb-2 self-start" name="intent" value="new">
             New
           </button>
-          <TProfiles tProfiles={tProfiles} onDelete={handleDelete} onCopy={handleCopy} onEdit={handleEdit} />
+          <TProfiles tProfiles={tProfiles} onDelete={handleDelete} />
         </div>
-      </form>
+      </Form>
     </ContentLayout>
   );
 }

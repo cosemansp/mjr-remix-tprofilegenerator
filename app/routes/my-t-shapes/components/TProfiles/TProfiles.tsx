@@ -7,11 +7,9 @@ type Props = {
   tProfiles: TProfile[];
   readonly?: boolean;
   onDelete?: (tProfile: TProfile) => void;
-  onCopy?: (tProfile: TProfile) => void;
-  onEdit?: (tProfile: TProfile) => void;
 };
 
-export const TProfiles = ({ tProfiles, readonly = false, onDelete, onCopy, onEdit }: Props) => {
+export const TProfiles = ({ tProfiles, readonly = false, onDelete }: Props) => {
   const [profileToDelete, setProfileToDelete] = React.useState<TProfile | undefined>();
 
   const asIsProfiles = tProfiles.filter((item) => item.kind === 'asIs');
@@ -28,25 +26,13 @@ export const TProfiles = ({ tProfiles, readonly = false, onDelete, onCopy, onEdi
     setProfileToDelete(undefined);
   };
 
-  const handleDownload = (p: TProfile) => {
-    console.log('downloaded', p);
-  };
-
   return (
     <>
       {asIsProfiles.length > 0 && (
         <Card title="As-Is">
           <div className="flex flex-wrap gap-4" data-testid="AsIsWrapper">
             {asIsProfiles.map((profile) => (
-              <TProfilePanel
-                key={profile.id}
-                onEdit={onEdit}
-                onCopy={onCopy}
-                onDelete={handleDelete}
-                onDownload={handleDownload}
-                profile={profile}
-                readonly={readonly}
-              />
+              <TProfilePanel key={profile.id} profile={profile} readonly={readonly} onDelete={handleDelete} />
             ))}
           </div>
         </Card>
@@ -56,15 +42,7 @@ export const TProfiles = ({ tProfiles, readonly = false, onDelete, onCopy, onEdi
         <Card title="To-Be">
           <div className="flex flex-wrap gap-4" data-testid="ToBeWrapper">
             {toBeProfiles.map((profile) => (
-              <TProfilePanel
-                key={profile.id}
-                onEdit={onEdit}
-                onCopy={onCopy}
-                onDelete={handleDelete}
-                onDownload={handleDownload}
-                profile={profile}
-                readonly={readonly}
-              />
+              <TProfilePanel key={profile.id} profile={profile} readonly={readonly} onDelete={handleDelete} />
             ))}
           </div>
         </Card>

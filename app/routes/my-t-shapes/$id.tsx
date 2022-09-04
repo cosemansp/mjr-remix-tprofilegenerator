@@ -20,7 +20,6 @@ export default function Index() {
   const { tProfiles } = useLoaderData<typeof loader>();
   return (
     <ContentLayout title={` Edit T-Shape`}>
-      <span>Not implemented yet</span>
       <div>{JSON.stringify(tProfiles)}</div>
     </ContentLayout>
   );
