@@ -10,7 +10,8 @@ export interface Db {
 
 let currentClient: MongoClient | undefined;
 if (!currentClient) {
-  const uri = process.env.MONGO_URI;
+  const uri = 'mongodb://localhost:27017/samples'; // process.env.MONGO_URI;
+  console.log('uri', uri);
   if (!uri) throw new Error('No Mongo URI configured (MONGO_URI)');
   currentClient = new MongoClient(uri);
 }
