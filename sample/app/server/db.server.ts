@@ -8,16 +8,15 @@ export interface Db {
   categories: Collection<OptionalId<CategoryDb>>;
 }
 
-let currentClient: MongoClient | undefined;
-if (!currentClient) {
+if (!global.currentClient) {
+  console.log('Creating new client');
   const uri = 'mongodb://localhost:27017/samples'; // process.env.MONGO_URI;
-  console.log('uri', uri);
   if (!uri) throw new Error('No Mongo URI configured (MONGO_URI)');
-  currentClient = new MongoClient(uri);
+  global.currentClient = new MongoClient(uri);
 }
 
 export function getDb(): Readonly<Db> {
-  const client = currentClient;
+  const client = global.currentClient;
   if (!client) throw new Error('No Db connected');
   const db = client.db();
   return {

@@ -141,14 +141,15 @@ export const action = async ({ request }: ActionArgs) => {
 ```html
 <div className="bg-gray-200 p-2">
   <h2>New Category</h2>
-  <form method="post">
-      <div className="form-control">
-          <input className="input input-bordered" type="text" name="name" />
-      </div>
-      <button className="btn mt-2" type="submit">
-          Save
-      </button>
-  </form>
+  <Form method="post">
+    <label htmlFor="name">Name</label>
+    <div className="form-control">
+      <input className="input input-bordered" type="text" name="name" id="name" />
+    </div>
+    <button className="btn mt-2" type="submit">
+      Save
+    </button>
+  </Form>
 </div
 ```
 
@@ -185,7 +186,8 @@ export const action = async ({ request }: ActionArgs) => {
 
 ```tsx
 type ActionData = {
-  errors: { name: string[] };
+  status: number;
+  errors: z.inferFlattenedErrors<typeof formSchema>['fieldErrors'];
 };
 
 export default () => {
@@ -204,7 +206,7 @@ export default () => {
 ```js
 const category = await getDb().categories.findOne({ _id: new SafeObjectId(id) });
 if (!category) {
-    throw json({ status: 404, statusText: 'Not Found' });
+    throw json({ message: 'Category not found' }, { status: 404 });
 }
 ```
 
@@ -246,12 +248,15 @@ export function CatchBoundary() {
   );
 }
 
-// $id.tsx
+// categories.tsx
 export function CatchBoundary() {
-  const { data } = useCatch();
+  const caught = useCatch();
   return (
     <div>
-      <p>Resources not found [{data.status}]</p>
+      <h1>Oops!, the resource is not found</h1>
+      <p>{caught.status}</p>
+      <p>{caught.data.message}</p>
+      <Link to="/">Go Home</Link>
     </div>
   );
 }
